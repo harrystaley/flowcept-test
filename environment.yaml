@@ -1,0 +1,37 @@
+name: flowcept
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      # Core: Flowcept with extras we'll likely need.
+      # - mongo: persistent storage for provenance queries
+      # - llm_agent: LangChain + Streamlit + MCP support for agentic capture
+      # - telemetry: CPU/memory metrics (cheap and useful)
+      # Comment out extras you don't need; or use 'flowcept[extras]' for the
+      # bundled common runtime set (Redis + telemetry + Mongo).
+      - flowcept[mongo,llm_agent,telemetry]>=0.10.1
+
+      # Project-specific additions (uncomment as you need them):
+      #
+      # AgentPoison test bench:
+      # - torch>=2.2,<2.5
+      # - transformers>=4.40
+      # - sentence-transformers>=2.7
+      # - faiss-cpu>=1.7        # or faiss-gpu if running on PACE
+      # - datasets>=2.18
+      #
+      # Working with the StrategyQA bench:
+      # - openai>=1.30          # only if calling GPT models
+      # - tiktoken>=0.7
+      #
+      # Provenance / attestation experiments:
+      # - cryptography>=42      # for sigstore / X.509 verification scratch work
+      # - pyld>=2.0             # JSON-LD for PROV-DM serialization
+      #
+      # Notebook / analysis (optional):
+      # - jupyterlab>=4.0
+      # - pandas>=2.0
+      # - matplotlib>=3.8

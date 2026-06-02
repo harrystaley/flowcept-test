@@ -1,54 +1,97 @@
-# Template
+# flowcept-test
 
-## Project Overview
+Local sandbox for working with Flowcept as the baseline for the CS-8903
+source-attestation extension project (Staley / Madisetti, Summer 2026).
 
-This repository, Template, is a versatile template repository designed to streamline the creation of new GitHub projects. It ensures a consistent and efficient setup process, allowing developers to focus on the core aspects of their projects without having to worry about the initial setup.
+The goal of this directory is small and concrete: confirm the Flowcept
+reference implementation installs, runs end-to-end and captures provenance,
+so subsequent work on attestation-tier extensions builds on a verified
+baseline.
 
-## Setup and Installation
+## Prerequisites
 
-To use this template for your project, follow these steps:
+- A recent **Miniconda** (or Miniforge) install on your machine. Apple Silicon
+  Macs should use the arm64 installer.
+- A POSIX-ish shell (bash, zsh). On Windows use WSL.
 
-1. Click on the `Use this template` button at the top of this repository.
-2. Name your repository and provide an optional description.
-3. Choose whether to make your repository public or private.
-4. Click `Create repository from template`.
+## Setup
 
-There are no specific dependencies required to use this template.
+From the project root:
 
-## Usage
-
-Once you've created a new repository using this template, you can start adding your project files and customize the README.md file to suit your project. 
-
-Here's an example of how you can structure your README:
-
-```markdown
-# Project Name
-
-## Overview
-
-A brief description of your project.
-
-## Installation
-
-Detailed steps on how to install your project, including any dependencies.
-
-## Usage
-
-Examples of how to use your project.
-
-## Contributing
-
-Guidelines for people who want to contribute to your project.
-
-## License
-
-Information about the license.
+```bash
+./setup.sh
 ```
 
-## Contributing
+This creates a conda env called `flowcept` from `environment.yaml`, installs
+Flowcept with the `mongo`, `llm_agent` and `telemetry` extras, and writes a
+minimal Flowcept settings file at `~/.flowcept/settings.yaml`.
 
-We welcome contributions from everyone. If you'd like to contribute to this project, please review the [CONTRIBUTING.md](CONTRIBUTING.md) file for details on how to get started.
+The script is idempotent. Re-running it updates the env in place rather than
+failing.
 
-## License
+If `setup.sh` reports that conda is missing, install Miniconda first:
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+```bash
+# Apple Silicon (recommended for new Macs):
+# Download from https://docs.conda.io/projects/miniconda/en/latest/
+# Or:
+brew install --cask miniconda
+```
+
+Restart your shell after installing Miniconda, then re-run `./setup.sh`.
+
+## Smoke test
+
+After setup, activate the env and run the quickstart:
+
+```bash
+conda activate flowcept
+python quickstart.py
+```
+
+Expected output:
+
+- `Final output 8` printed to the terminal
+- A JSON dump of two captured provenance messages (one per decorated task)
+- A new file `flowcept_messages.jsonl` containing the same two records
+
+If you see those, the Flowcept reference implementation is working and the
+baseline is verified.
+
+## PyCharm
+
+To use PyCharm with this project:
+
+1. File -> Open -> select this directory
+2. Bottom-right of the window, click the interpreter selector
+3. Add New Interpreter -> Add Local Interpreter -> Conda Environment
+4. Use existing environment -> pick `flowcept`
+
+PyCharm's terminal will then activate the env automatically. Run
+`quickstart.py` via right-click -> Run.
+
+## Layout
+
+```
+.
+├── environment.yaml      # conda env definition (source of truth)
+├── setup.sh              # one-command setup
+├── quickstart.py         # Flowcept hello-world from the upstream README
+├── flowcept_messages.jsonl   # captured provenance (gitignored)
+└── README.md
+```
+
+## Notes
+
+- `environment.yaml` pins Python to 3.11 for compatibility with ML-adjacent
+  dependencies that will be added later (PyTorch, transformers, etc.).
+- The `flowcept` settings file lives at `~/.flowcept/settings.yaml`, outside
+  the project. Edit there to change MQ/DB backends, log levels, telemetry
+  capture, etc.
+- For HPC / online persistence work later, see the Flowcept deployment
+  Makefile shortcuts at <https://github.com/ORNL/flowcept/tree/main/deployment>.
+
+## References
+
+- Flowcept: <https://github.com/ORNL/flowcept>
+- PROV-AGENT (Souza et al., e-Science 2025): arXiv:2508.02866
