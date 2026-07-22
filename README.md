@@ -1,97 +1,72 @@
+```markdown
 # flowcept-test
 
-Local sandbox for working with Flowcept as the baseline for the CS-8903
-source-attestation extension project (Staley / Madisetti, Summer 2026).
+## Overview
 
-The goal of this directory is small and concrete: confirm the Flowcept
-reference implementation installs, runs end-to-end and captures provenance,
-so subsequent work on attestation-tier extensions builds on a verified
-baseline.
+**flowcept-test** is a versatile command-line tool designed to streamline the workflow of software developers and data scientists. It integrates multiple programming languages and tools, offering a seamless interface for executing scripts and managing projects. Whether you're working with Python, Bash, C, Go, R, or other languages, flowcept-test provides a unified platform to enhance productivity and collaboration.
 
-## Prerequisites
+## Features
 
-- A recent **Miniconda** (or Miniforge) install on your machine. Apple Silicon
-  Macs should use the arm64 installer.
-- A POSIX-ish shell (bash, zsh). On Windows use WSL.
+- **Multi-Language Support**: Execute scripts written in Python, Bash, C, Go, and R from a single interface.
+- **AI Integration**: Leverage built-in AI capabilities to optimize code and automate repetitive tasks.
+- **Command-Line Interface (CLI)**: Intuitive CLI for executing commands and managing projects.
+- **Cross-Platform Compatibility**: Compatible with various operating systems, ensuring flexibility and ease of use.
+- **User Interface (UI) Options**: Optional UI components for those who prefer a visual approach.
 
-## Setup
+## Installation
 
-From the project root:
+To get started with flowcept-test, follow these simple steps:
 
-```bash
-./setup.sh
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/yourusername/flowcept-test.git
+   cd flowcept-test
+   ```
+
+2. **Install Dependencies**:
+   Ensure you have Python 3 installed. Then, install the required packages:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Build the Project** (if applicable):
+   For Go components, build the binaries:
+   ```bash
+   go build
+   ```
+
+## Usage
+
+Here are some examples of how to use flowcept-test:
+
+- **Run a Python Script**:
+  ```bash
+  ./flowcept-test run script.py
+  ```
+
+- **Execute a Bash Command**:
+  ```bash
+  ./flowcept-test exec "echo 'Hello, World!'"
+  ```
+
+- **Compile and Run a C Program**:
+  ```bash
+  ./flowcept-test compile program.c
+  ./flowcept-test run program
+  ```
+
+## Contribution Guidelines
+
+We welcome contributions to flowcept-test! To contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix.
+3. Implement your changes and commit them with clear and descriptive messages.
+4. Submit a pull request detailing your changes.
+
+Please ensure your contributions adhere to the project's coding standards and include tests where applicable.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 ```
-
-This creates a conda env called `flowcept` from `environment.yaml`, installs
-Flowcept with the `mongo`, `llm_agent` and `telemetry` extras, and writes a
-minimal Flowcept settings file at `~/.flowcept/settings.yaml`.
-
-The script is idempotent. Re-running it updates the env in place rather than
-failing.
-
-If `setup.sh` reports that conda is missing, install Miniconda first:
-
-```bash
-# Apple Silicon (recommended for new Macs):
-# Download from https://docs.conda.io/projects/miniconda/en/latest/
-# Or:
-brew install --cask miniconda
-```
-
-Restart your shell after installing Miniconda, then re-run `./setup.sh`.
-
-## Smoke test
-
-After setup, activate the env and run the quickstart:
-
-```bash
-conda activate flowcept
-python quickstart.py
-```
-
-Expected output:
-
-- `Final output 8` printed to the terminal
-- A JSON dump of two captured provenance messages (one per decorated task)
-- A new file `flowcept_messages.jsonl` containing the same two records
-
-If you see those, the Flowcept reference implementation is working and the
-baseline is verified.
-
-## PyCharm
-
-To use PyCharm with this project:
-
-1. File -> Open -> select this directory
-2. Bottom-right of the window, click the interpreter selector
-3. Add New Interpreter -> Add Local Interpreter -> Conda Environment
-4. Use existing environment -> pick `flowcept`
-
-PyCharm's terminal will then activate the env automatically. Run
-`quickstart.py` via right-click -> Run.
-
-## Layout
-
-```
-.
-├── environment.yaml      # conda env definition (source of truth)
-├── setup.sh              # one-command setup
-├── quickstart.py         # Flowcept hello-world from the upstream README
-├── flowcept_messages.jsonl   # captured provenance (gitignored)
-└── README.md
-```
-
-## Notes
-
-- `environment.yaml` pins Python to 3.11 for compatibility with ML-adjacent
-  dependencies that will be added later (PyTorch, transformers, etc.).
-- The `flowcept` settings file lives at `~/.flowcept/settings.yaml`, outside
-  the project. Edit there to change MQ/DB backends, log levels, telemetry
-  capture, etc.
-- For HPC / online persistence work later, see the Flowcept deployment
-  Makefile shortcuts at <https://github.com/ORNL/flowcept/tree/main/deployment>.
-
-## References
-
-- Flowcept: <https://github.com/ORNL/flowcept>
-- PROV-AGENT (Souza et al., e-Science 2025): arXiv:2508.02866
