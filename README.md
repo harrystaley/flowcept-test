@@ -1,72 +1,76 @@
 ```markdown
 # Flowcept-Test
 
-Flowcept-Test is a versatile multi-language command-line interface (CLI) tool designed to enhance your productivity with the power of AI, seamless Git integration, and robust cross-platform support. Built using a combination of Python, Bash, C, and Go, Flowcept-Test offers a unique blend of features tailored for developers and tech enthusiasts.
+Flowcept-Test is a versatile multi-language Command Line Interface (CLI) tool designed to boost productivity through the integration of AI, seamless Git operations, and robust cross-platform support. Built using Python, Bash, C, and Go, Flowcept-Test serves as a powerful utility for developers looking to streamline their workflow across different environments.
 
 ## Features
 
-- **AI Integration**: Leverage artificial intelligence to automate mundane tasks and boost efficiency.
-- **Git Integration**: Seamlessly interact with your Git repositories for version control and collaboration.
-- **Cross-Platform Support**: Compatible with various operating systems, ensuring a smooth experience on Windows, macOS, and Linux.
-- **Multi-Language Support**: Built using Python, Bash, C, and Go to leverage the strengths of each language.
-- **User-Friendly CLI**: Intuitive command-line interface for ease of use and quick adoption.
+- **AI Integration**: Leverage artificial intelligence to enhance coding efficiency and automate repetitive tasks.
+- **Git Integration**: Perform version control operations directly from the CLI with ease.
+- **Cross-Platform Support**: Seamlessly operate across various operating systems including Windows, macOS, and Linux.
+- **Multi-Language Support**: Utilize the strengths of Python, Bash, C, and Go within a single tool.
+- **User-Friendly Interface**: Navigate with ease using a command-line interface designed for both novice and experienced users.
 
 ## Installation
 
-To install Flowcept-Test, follow these steps:
-
-1. Clone the repository:
+1. **Clone the Repository**:
    ```bash
    git clone https://github.com/yourusername/flowcept-test.git
    ```
-2. Navigate to the project directory:
+2. **Navigate to the Project Directory**:
    ```bash
    cd flowcept-test
    ```
-3. Run the setup script:
-   ```bash
-   ./setup.sh
-   ```
-
-*Note: Ensure you have Python, Bash, and Go installed on your system before running the setup.*
+3. **Run the Setup Script**:
+   Depending on your operating system, execute the appropriate setup script:
+   - For Unix-based systems:
+     ```bash
+     ./setup.sh
+     ```
+   - For Windows:
+     ```cmd
+     setup.bat
+     ```
 
 ## Usage
 
-Here are some usage examples to get you started:
+After installation, you can start using Flowcept-Test by executing the following command in your terminal:
 
-- **AI Task Automation**:
-  ```bash
-  flowcept ai-task --optimize
-  ```
-- **Git Operations**:
-  ```bash
-  flowcept git-status
-  ```
-- **Cross-Platform Script Execution**:
-  ```bash
-  flowcept run-script --file=example.py
-  ```
-
-For a full list of commands and options, use:
 ```bash
-flowcept --help
+flowcept-test [options]
 ```
 
-## Contribution
+### Examples
+
+- **Initiate AI Assistance**:
+  ```bash
+  flowcept-test --ai
+  ```
+- **Execute Git Operations**:
+  ```bash
+  flowcept-test --git status
+  ```
+- **Compile with C**:
+  ```bash
+  flowcept-test --compile myprogram.c
+  ```
+
+## Contribution Guidelines
 
 We welcome contributions from the community! To contribute:
 
 1. Fork the repository.
-2. Create a new branch with a descriptive name.
-3. Make your changes and commit them.
-4. Push your changes to your fork.
-5. Submit a pull request with a detailed description of your changes.
+2. Create a new branch for your feature or bugfix.
+3. Commit your changes and push them to your fork.
+4. Submit a pull request to the main branch.
 
-Please ensure your code adheres to the existing style and includes tests where applicable.
+Please ensure your code adheres to the existing style and passes all tests.
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-```
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
 
-This README.md provides a structured overview of the project, its features, installation, usage, contribution guidelines, and licensing information, all formatted for clarity and ease of use.
+---
+
+We hope Flowcept-Test enhances your development experience. If you encounter any issues or have suggestions, feel free to open an issue on GitHub.
+```
